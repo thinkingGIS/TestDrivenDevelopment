@@ -33,4 +33,4 @@ class ItemValidationTest(FunctionalTest):
         self.browser.find_element_by_id('id_new_item').send_keys('Make tea\n')
         self.check_for_row_in_list_table('1: Buy milk')
         self.check_for_row_in_list_table('2: Make tea')
-        self.fail('Write me Madafaka!')
+        #self.fail('Write me Madafaka!')
