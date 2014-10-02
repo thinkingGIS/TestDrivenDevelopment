@@ -19,13 +19,11 @@ class ItemFormTest(TestCase):
             [EMPTY_LIST_ERROR]
         )
 
-    def test_form_save_handlers_saving_to_a_lis(self):
+    def test_form_save(self):
         list_ = List.objects.create()
-        form = ItemForm(data={'text': 'do me'})
-        new_item = form.save(for_list=list_)
-        self.assertEqual(new_item, Item.objects.first())
-        self.assertEqual(new_item.text, 'do me')
-        self.assertEqual(new_item.list, list_)
+        form = ExistingListItemForm(for_list=list_, data={'text': 'do me'})
+        new_item = form.save()
+        self.assertEqual(new_item, Item.objects.all()[0])
 
 class ExistingListItemFormTest(TestCase):
     """docstring for ExistingListItemFormTest"""
