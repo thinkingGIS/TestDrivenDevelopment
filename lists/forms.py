@@ -3,6 +3,7 @@ from django import forms
 from lists.models import Item
 
 EMPTY_LIST_ERROR = "You can't have an empty list item Madafaka!"
+DUPLICATE_ITEM_ERROR = "You've already got this in your list"
 
 class ItemForm(forms.models.ModelForm):
     """docstring for ItemForm"""
@@ -23,3 +24,11 @@ class ItemForm(forms.models.ModelForm):
     def save(self, for_list):
         self.instance.list = for_list
         return super().save()
+
+class ExistingListItemForm(ItemForm):
+    """docstring for ExistingListItemForm"""
+
+    def __init__(self, for_list, *args, **kargs):
+        super().__init__(*args, **kargs)
+        
+        
